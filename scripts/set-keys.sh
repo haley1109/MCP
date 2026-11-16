@@ -46,16 +46,18 @@ set_ref() {
   keyline="  ${name}: $(yaml_value "$value")"
   next="$(mktemp "$dsh_home/.credentials.XXXXXX")"
   if grep -qE "^[[:space:]]*${name}:" "$tmp"; then
-    awk -v k="$keyline" -v n="$name" '$0 ~ "^[[:space:]]*" n ":" { print k; next } { print }' "$tmp" > "$next"
+    K="$keyline" awk -v n="$name" 'BEGIN { k = ENVIRON["K"] }
+      $0 ~ "^[[:space:]]*" n ":" { print k; next }
+      { print }' "$tmp" > "$next"
   elif grep -qE '^refs:[[:space:]]*$' "$tmp"; then
-    awk -v k="$keyline" '
+    K="$keyline" awk 'BEGIN { k = ENVIRON["K"] }
       /^refs:[[:space:]]*$/ { print; inrefs = 1; next }
       inrefs && /^[^[:space:]]/ { print k; inrefs = 0 }
       { print }
       END { if (inrefs) print k }
     ' "$tmp" > "$next"
   else
-    awk -v k="$keyline" 'BEGIN { d = 0 }
+    K="$keyline" awk 'BEGIN { k = ENVIRON["K"]; d = 0 }
       { if (!d && $0 ~ /^version:/) { print; print "refs:"; print k; d = 1; next } print }
       END { if (!d) { print "refs:"; print k } }' "$tmp" > "$next"
   fi

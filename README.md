@@ -86,6 +86,19 @@ security find-generic-password -a "$USER" -s "dsh-mcp-kit" -w > ~/keys.env
 
 装了 1Password CLI（`op`）后，也可以按需 `op read op://<vault>/<item>/<field>` 取单个值再写入。
 
+### keys.env 丢了怎么办
+
+它只是副本，**不影响正在运行的连接**（DSH 实际读的是 `~/.dsh/.credentials.yaml`）。按情况恢复：
+
+```bash
+# 机器还在：从凭据库一条命令重建
+PKG=$(ls -d ~/.dsh/profiles/*/node_modules/@local/dsh-mcp-kit | head -1)
+"$PKG/scripts/export-keys.sh" ~/keys.env
+```
+
+- 连机器也没了 / 换了新设备：去领星后台「AI 助手 → MCP → 复制密钥」重新拿一次即可（密钥绑账号，随时可取），再跑 `set-keys.sh`。
+- 优先用「复制密钥」而不是「重新生成」：后者会让**所有设备**上的旧值同时失效。
+
 ## 更新与回滚
 
 - 更新：改完推送，各设备在插件页更新套件；
