@@ -1,7 +1,7 @@
-# 所有 MCP 服务器集中在这里声明。
-# 新增一个 MCP = 这里加一块 servers.<名字> + keys.env.example 加一行凭据名。
+# 这个插件做两件事：声明所有 MCP 服务器 + 接上本地技能源。
+# 新增 MCP = 这里加一块 servers.<名字> + keys.env.example 加一行凭据名。
 # 密钥一律用 ${credential:名字} 引用，本文件不含任何真实密钥。
-# 注意：这里是“整表声明”。如需临时停用某个服务器，加 enabled: false。
+# 注意：servers 是“整表声明”。如需临时停用某个服务器，加 enabled: false。
 - id: mcp-manager
   name: '@deepseek-ai/dsh-mcp-manager'
   config:
@@ -13,3 +13,12 @@
           X-Mcp-Key: '${credential:LINGXING_MCP_KEY}'
         startupTimeoutMs: 60000
         toolCallTimeoutMs: 120000
+
+# 本地技能源：启用 DSH 自带的文件系统技能提供器，扫描 ~/dsh-skills/skills。
+# 该目录是 git@github.com:haley1109/Skills.git 的克隆，更新方式：git -C ~/dsh-skills pull
+# 用 !!js 从 HOME 推导路径，换设备只要克隆到同一相对位置即可。
+- id: skill-filesystem
+  name: '@deepseek-ai/dsh-skill-filesystem'
+  disabled: false
+  config:
+    customSkillDirs: !!js "[process.env.HOME + '/dsh-skills/skills']"

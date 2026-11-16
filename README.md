@@ -40,6 +40,37 @@ PKG=$(ls -d ~/.dsh/profiles/*/node_modules/@local/dsh-mcp-kit | head -1)
 
 验证：让智能体调用 `mcp__lingxing__help`，返回工具列表即接通。
 
+## 本地技能源（skills）
+
+本插件同时启用 DSH 的文件系统技能提供器（`skill-filesystem`），扫描：
+
+```
+~/dsh-skills/skills/<名字>/SKILL.md
+```
+
+`~/dsh-skills` 是 `git@github.com:haley1109/Skills.git` 的克隆（91 个 skill）。
+
+**新设备**：
+
+```bash
+git clone git@github.com:haley1109/Skills.git ~/dsh-skills
+```
+
+**更新技能**：
+
+```bash
+git -C ~/dsh-skills pull --ff-only
+```
+
+有文件监听，`pull` 之后目录自动刷新，无需重启。
+
+注意：
+
+- 只扫描 `skills/<名字>/SKILL.md` 这一层；`references/source-original/SKILL.md` 不会被当成独立技能。
+- 同名技能按来源优先级取胜：项目 `.dsh/skills`(100) > `.agents/skills`(200) > 自定义目录(300，即本仓库) > `~/.dsh/skills`(400) > `~/.agents/skills`(500) > 内置(600)。
+- **成本提示**：91 个技能的 description 合计约 23 KB（≈7–8K tokens），会进入每次请求的技能目录。觉得太重可以精简 `<repo>/skills/*/SKILL.md` 的 description。
+- 换设备若不想克隆到 `~/dsh-skills`，改 `cordis.patch.yml` 里那条 `!!js` 的路径即可。
+
 ## 新增一个 MCP（3 步）
 
 1. 在 `cordis.patch.yml` 的 `servers:` 下加一块：

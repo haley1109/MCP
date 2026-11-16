@@ -7,10 +7,11 @@
 ```
 请在这台设备上恢复我的 DSH 环境，按顺序执行，不要跳步，也不要新建重复插件。
 
-1) 安装插件（用插件管理的 install_bundle，target 依次填）：
+1) 安装插件（用插件管理的 install_bundle，target 填）：
    - github:haley1109/MCP
-   - github:haley1109/skills
-   两个仓库都是公开的，不需要 GitHub 认证。如果第二个仓库还不存在，跳过它并告诉我。
+   然后克隆技能仓库到固定位置（这个插件会扫描它）：
+   - git clone git@github.com:haley1109/Skills.git ~/dsh-skills
+   注意：克隆 Skills 需要该设备已配置 GitHub SSH key 或用 HTTPS。
 
 2) 恢复密钥：我会把密钥或 keys.env 给你。拿到后执行：
    PKG=$(ls -d ~/.dsh/profiles/*/node_modules/@local/dsh-mcp-kit | head -1)
