@@ -2,7 +2,9 @@
 
 一个 DSH 插件，集中声明并管理你使用的**所有** MCP 服务器。装一次，之后新增 MCP 只改配置、不用再装插件。
 
-- 当前包含：领星 ERP 官方 MCP（`mcp__lingxing__*`）
+- 当前声明：领星 ERP、西柚洞察、Sif、xlsx-for-ai（Excel）
+- Codex 配置与运行时清单：[codex/README.md](codex/README.md)
+- 最新检查：[2026-11-16 MCP 检查报告](docs/mcp-audit-2026-11-16.md)；声明不代表业务调用已通过
 - 承载方式：`@deepseek-ai/dsh-mcp-manager`，每个 MCP 是 `servers` 下的一项
 - 鉴权：每个服务器用自己的凭据引用（`${credential:名字}`），**仓库内无任何密钥**
 
@@ -18,7 +20,7 @@ DSH **插件 → 添加插件**，填：
 github:haley1109/MCP
 ```
 
-若该网络访问 github.com:443 超时（本机实测会遇到），改用 SSH 形式：
+若该网络访问 github.com:443 超时，可使用已配置 SSH key 的设备改用 SSH 形式：
 
 ```
 git+ssh://git@github.com/haley1109/MCP.git
@@ -93,6 +95,8 @@ git -C ~/dsh-skills pull --ff-only
 3. 提交推送，各设备更新插件 + 跑一次 `set-keys.sh`。工具会以 `mcp__newsource__*` 出现。
 
 stdin 型的 MCP 用 `transport: stdio` + `command` / `args` / `env` 代替 `url` / `headers`。
+
+xlsx-for-ai 使用固定 npm 版本 `xlsx-for-ai@3.2.5`，需要 Node.js 22 或以上和 npm；首次启动需要访问 npm。现有 DSH 凭据脚本支持新增的 `XYDC_MCP_TOKEN` 和 `SIF_MCP_TOKEN`，不用改脚本。Sif 使用认证头，不在 URL 中附加密钥。Node REPL、Codex App、电脑控制及托管应用由 Codex 管理，迁移说明见 `codex/README.md`，不放入 DSH 的服务器声明。
 
 ## 密钥与本机状态
 

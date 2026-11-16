@@ -1,0 +1,51 @@
+{
+  "checked_date": "2026-11-16",
+  "scope": "Session tool metadata; not a credential or connection backup",
+  "apps": [
+    {
+      "name": "github",
+      "tool_count": 89,
+      "status": "repository_read_and_write_permission_verified"
+    },
+    {
+      "name": "canva",
+      "tool_count": 43,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "sites",
+      "tool_count": 25,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "codex_document_control",
+      "tool_count": 3,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "hotline",
+      "tool_count": 1,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "pets",
+      "tool_count": 11,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "plugin_management",
+      "tool_count": 6,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "safety_settings",
+      "tool_count": 5,
+      "status": "metadata_only_not_probed"
+    },
+    {
+      "name": "search_service",
+      "tool_count": 1,
+      "status": "metadata_only_not_probed"
+    }
+  ]
+}

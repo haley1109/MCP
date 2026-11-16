@@ -14,6 +14,30 @@
         startupTimeoutMs: 60000
         toolCallTimeoutMs: 120000
 
+      xydc-mcp:
+        transport: streamable-http
+        url: https://mcp.xydc.com/mcp
+        headers:
+          Authorization: 'Bearer ${credential:XYDC_MCP_TOKEN}'
+        startupTimeoutMs: 60000
+        toolCallTimeoutMs: 120000
+
+      sif_mcp:
+        transport: streamable-http
+        url: https://mcp.sif.com/mcp
+        headers:
+          Authorization: 'Bearer ${credential:SIF_MCP_TOKEN}'
+        startupTimeoutMs: 60000
+        toolCallTimeoutMs: 120000
+
+      xfa:
+        transport: stdio
+        # Windows must launch the npm command through cmd.exe.
+        command: !!js "process.platform === 'win32' ? 'cmd.exe' : 'npx'"
+        args: !!js "process.platform === 'win32' ? ['/d', '/s', '/c', 'npx --yes --package=xlsx-for-ai@3.2.5 xlsx-for-ai-mcp'] : ['--yes', '--package=xlsx-for-ai@3.2.5', 'xlsx-for-ai-mcp']"
+        startupTimeoutMs: 120000
+        toolCallTimeoutMs: 120000
+
 # 本地技能源：启用 DSH 自带的文件系统技能提供器，扫描 ~/dsh-skills/skills。
 # 该目录是 git@github.com:haley1109/Skills.git 的克隆，更新方式：git -C ~/dsh-skills pull
 # 用 !!js 从 HOME 推导路径，换设备只要克隆到同一相对位置即可。

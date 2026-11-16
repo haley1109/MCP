@@ -1,0 +1,139 @@
+{
+  "checked_date": "2026-11-16",
+  "timezone": "Asia/Shanghai",
+  "scope": "Current Codex user configuration, enabled plugin declarations, and current session tool metadata",
+  "user_servers": [
+    {
+      "name": "xfa",
+      "kind": "user_stdio",
+      "enabled": true,
+      "portable": true,
+      "npm_package": "xlsx-for-ai",
+      "npm_version": "3.2.5",
+      "health": {
+        "protocol": "tools_list_ok",
+        "tool_count": 50,
+        "business_api_tested": false
+      }
+    },
+    {
+      "name": "xydc-mcp",
+      "kind": "user_http",
+      "enabled": true,
+      "portable": true,
+      "url": "https://mcp.xydc.com/mcp",
+      "credential_env": "XYDC_MCP_TOKEN",
+      "health": {
+        "protocol": "connection_failed",
+        "probe_timeout_seconds": 18,
+        "loaded_in_session": false,
+        "token_validity": "unverified"
+      }
+    },
+    {
+      "name": "sif_mcp",
+      "kind": "user_http",
+      "enabled": true,
+      "portable": true,
+      "url": "https://mcp.sif.com/mcp",
+      "credential_env": "SIF_MCP_TOKEN",
+      "health": {
+        "protocol": "tools_list_ok",
+        "tool_count": 35,
+        "header_only_auth_verified": true,
+        "business_status": "QUOTA_EXCEEDED",
+        "business_detail": "No MCP usage allocation; no paid analysis requested"
+      }
+    },
+    {
+      "name": "node_repl",
+      "kind": "user_host_runtime",
+      "enabled": true,
+      "portable": false,
+      "health": {
+        "execution": "ok",
+        "expression": "1 + 1",
+        "result": 2
+      },
+      "restore": "Install the matching Codex runtime; do not copy machine paths or pipe identifiers"
+    }
+  ],
+  "plugin_mcp_servers": [
+    {
+      "name": "codex_app",
+      "plugin": "codex-app-tools@openai-bundled",
+      "status": "tool_metadata_available_not_probed"
+    },
+    {
+      "name": "cua_repl",
+      "plugin": "unified-computer-use@openai-bundled",
+      "status": "native_surface_available_not_probed"
+    }
+  ],
+  "host_injected_servers": [
+    {
+      "name": "artifact_session",
+      "status": "tool_metadata_available_not_probed"
+    }
+  ],
+  "enabled_local_plugins": [
+    {
+      "name": "visualize@openai-bundled",
+      "enabled": true
+    },
+    {
+      "name": "documents@openai-primary-runtime",
+      "enabled": true
+    },
+    {
+      "name": "pdf@openai-primary-runtime",
+      "enabled": true
+    },
+    {
+      "name": "spreadsheets@openai-primary-runtime",
+      "enabled": true
+    },
+    {
+      "name": "presentations@openai-primary-runtime",
+      "enabled": true
+    },
+    {
+      "name": "template-creator@openai-primary-runtime",
+      "enabled": true
+    },
+    {
+      "name": "codex-app-tools@openai-bundled",
+      "enabled": true
+    },
+    {
+      "name": "browser@openai-bundled",
+      "enabled": true
+    },
+    {
+      "name": "unified-computer-use@openai-bundled",
+      "enabled": true
+    },
+    {
+      "name": "computer-use@openai-bundled",
+      "enabled": true
+    }
+  ],
+  "repository_existing_servers": [
+    {
+      "name": "lingxing",
+      "host": "DSH",
+      "status": "preserved_not_tested"
+    }
+  ],
+  "publication": {
+    "repository": "haley1109/MCP",
+    "ssh_url": "ssh://git@github.com/haley1109/MCP.git",
+    "ssh_status": "publickey_authentication_failed",
+    "write_transport": "connected_github_git_data_api",
+    "credentials_included": false
+  },
+  "notes": [
+    "Tool catalog visibility is not proof of account authorization or successful business calls.",
+    "Runtime binaries, account sessions, credential stores and third-party source bundles are not copied."
+  ]
+}

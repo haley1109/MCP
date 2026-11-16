@@ -1,6 +1,6 @@
 {
   "name": "@local/dsh-mcp-kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
@@ -13,6 +13,7 @@
     "cordis.patch.yml",
     "locale/*.json",
     "docs",
+    "codex",
     "icon.svg",
     "scripts",
     "README.md",

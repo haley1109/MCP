@@ -1,0 +1,24 @@
+# Only the portable user MCP servers. Merge into your Codex config; do not replace it.
+# Set XYDC_MCP_TOKEN and SIF_MCP_TOKEN outside Git, then restart Codex.
+# The xfa launch command below is for Windows; see README.md for macOS/Linux.
+
+[mcp_servers.xydc-mcp]
+enabled = true
+url = "https://mcp.xydc.com/mcp"
+bearer_token_env_var = "XYDC_MCP_TOKEN"
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.sif_mcp]
+enabled = true
+url = "https://mcp.sif.com/mcp"
+bearer_token_env_var = "SIF_MCP_TOKEN"
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.xfa]
+enabled = true
+command = "cmd.exe"
+args = ["/d", "/s", "/c", "npx --yes --package=xlsx-for-ai@3.2.5 xlsx-for-ai-mcp"]
+startup_timeout_sec = 120
+tool_timeout_sec = 120
