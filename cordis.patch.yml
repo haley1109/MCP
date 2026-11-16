@@ -16,9 +16,8 @@
 
       xydc-mcp:
         transport: streamable-http
-        url: https://mcp.xydc.com/mcp
-        headers:
-          Authorization: 'Bearer ${credential:XYDC_MCP_TOKEN}'
+        # 该服务通过 URL 的 mcp_token 查询参数鉴权；token 用凭据引用注入，仓库内不存明文。
+        url: 'https://mcp.xydc.com/mcp?mcp_token=${credential:XYDC_MCP_TOKEN}'
         startupTimeoutMs: 60000
         toolCallTimeoutMs: 120000
 

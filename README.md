@@ -96,7 +96,7 @@ git -C ~/dsh-skills pull --ff-only
 
 stdin 型的 MCP 用 `transport: stdio` + `command` / `args` / `env` 代替 `url` / `headers`。
 
-xlsx-for-ai 使用固定 npm 版本 `xlsx-for-ai@3.2.5`，需要 Node.js 22 或以上和 npm；首次启动需要访问 npm。现有 DSH 凭据脚本支持新增的 `XYDC_MCP_TOKEN` 和 `SIF_MCP_TOKEN`，不用改脚本。Sif 使用认证头，不在 URL 中附加密钥。Node REPL、Codex App、电脑控制及托管应用由 Codex 管理，迁移说明见 `codex/README.md`，不放入 DSH 的服务器声明。
+xlsx-for-ai 使用固定 npm 版本 `xlsx-for-ai@3.2.5`，需要 Node.js 22 或以上和 npm；首次启动需要访问 npm。现有 DSH 凭据脚本支持新增的 `XYDC_MCP_TOKEN` 和 `SIF_MCP_TOKEN`，不用改脚本。西柚洞察通过 URL 的 `mcp_token` 参数鉴权（`${credential:XYDC_MCP_TOKEN}` 注入，明文不进仓库）；Sif 使用认证头，不在 URL 中附加密钥。Node REPL、Codex App、电脑控制及托管应用由 Codex 管理，迁移说明见 `codex/README.md`，不放入 DSH 的服务器声明。
 
 ## 密钥与本机状态
 
