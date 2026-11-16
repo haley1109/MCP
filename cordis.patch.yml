@@ -23,17 +23,17 @@
 
       sif_mcp:
         transport: streamable-http
-        url: https://mcp.sif.com/mcp
-        headers:
-          Authorization: 'Bearer ${credential:SIF_MCP_TOKEN}'
+        # 该服务通过 URL 的 secret-key 查询参数鉴权；token 用凭据引用注入。
+        url: 'https://mcp.sif.com/mcp?secret-key=${credential:SIF_MCP_TOKEN}'
         startupTimeoutMs: 60000
         toolCallTimeoutMs: 120000
 
       xfa:
+        # 本机未安装 Node/npm/npx，暂不启用；装好 Node 22+ 后把 enabled 改回 true。
+        enabled: false
         transport: stdio
-        # Windows must launch the npm command through cmd.exe.
-        command: !!js "process.platform === 'win32' ? 'cmd.exe' : 'npx'"
-        args: !!js "process.platform === 'win32' ? ['/d', '/s', '/c', 'npx --yes --package=xlsx-for-ai@3.2.5 xlsx-for-ai-mcp'] : ['--yes', '--package=xlsx-for-ai@3.2.5', 'xlsx-for-ai-mcp']"
+        command: npx
+        args: ['--yes', '--package=xlsx-for-ai@3.2.5', 'xlsx-for-ai-mcp']
         startupTimeoutMs: 120000
         toolCallTimeoutMs: 120000
 
