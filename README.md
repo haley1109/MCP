@@ -65,6 +65,25 @@ stdin 型的 MCP 用 `transport: stdio` + `command` / `args` / `env` 代替 `url
 
 密钥与账号绑定、不绑定设备，可在多台设备复用。若在服务方后台重新生成密钥，**所有设备上的旧值同时失效**，需逐台更新 `keys.env` 后重跑脚本。
 
+## 密钥备份与恢复
+
+本机已生成一份填好的 `~/keys.env`（权限 600）。**建议整段存进密码管理器后删除本地文件**：
+
+1. 打开 `~/keys.env`，把 `NAME=VALUE` 行存进 1Password / 备忘录等安全条目（标题可用 `dsh-mcp-kit keys`）；
+2. 删除本地副本：`rm ~/keys.env`；
+3. 新设备上把内容另存为 `keys.env`，跑一次 `set-keys.sh` 即可。
+
+macOS 不想装 1Password CLI 时，可以用系统钥匙串：
+
+```bash
+# 存入（首次执行会要求输入登录密码）
+security add-generic-password -a "$USER" -s "dsh-mcp-kit" -w "$(cat ~/keys.env)" -U
+# 取出
+security find-generic-password -a "$USER" -s "dsh-mcp-kit" -w > ~/keys.env
+```
+
+装了 1Password CLI（`op`）后，也可以按需 `op read op://<vault>/<item>/<field>` 取单个值再写入。
+
 ## 更新与回滚
 
 - 更新：改完推送，各设备在插件页更新套件；
