@@ -1,0 +1,11 @@
+{
+  "name": "@local/dsh-mcp-kit",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "One DSH plugin that declares and manages every MCP server you use.",
+  "exports": { "./locale/*.json": "./locale/*.json", "./icon": "./icon.svg" },
+  "files": ["cordis.patch.yml", "locale/*.json", "docs", "icon.svg", "scripts", "README.md", "keys.env.example"],
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

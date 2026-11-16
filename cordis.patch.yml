@@ -1,0 +1,15 @@
+# 所有 MCP 服务器集中在这里声明。
+# 新增一个 MCP = 这里加一块 servers.<名字> + keys.env.example 加一行凭据名。
+# 密钥一律用 ${credential:名字} 引用，本文件不含任何真实密钥。
+# 注意：这里是“整表声明”。如需临时停用某个服务器，加 enabled: false。
+- id: mcp-manager
+  name: '@deepseek-ai/dsh-mcp-manager'
+  config:
+    servers:
+      lingxing:
+        transport: streamable-http
+        url: https://openmcp.lingxing.com/mcp-servers/lingxing-mcp
+        headers:
+          X-Mcp-Key: '${credential:LINGXING_MCP_KEY}'
+        startupTimeoutMs: 60000
+        toolCallTimeoutMs: 120000

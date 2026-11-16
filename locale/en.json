@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MCP kit",
+    "description": "Declares every MCP server you use in one place and connects them through the MCP manager. Currently connects the official LingXing (领星 ERP) server, whose tools appear as mcp__lingxing__<tool>. Add a server by editing the patch and keys.env.example, then update this plugin; per-server keys stay in the credential store. Disabling the plugin disconnects every server it declares.",
+    "detail": "docs/DETAIL.md"
+  }
+}

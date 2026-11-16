@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MCP 套件",
+    "description": "在一个地方声明你使用的所有 MCP 服务器，并交由 MCP 管理器统一连接。当前接入领星 ERP 官方服务，工具以 mcp__lingxing__<工具名> 出现。新增服务器只需改补丁和 keys.env.example 后更新本插件；各服务器的密钥保存在凭据库，不写进配置。停用本插件会断开它声明的全部服务器。",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}
