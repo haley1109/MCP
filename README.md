@@ -18,7 +18,13 @@ DSH **插件 → 添加插件**，填：
 github:haley1109/MCP
 ```
 
-公开仓库无需认证；私有仓库需要该设备能访问仓库（SSH key 或 token）。
+若该网络访问 github.com:443 超时（本机实测会遇到），改用 SSH 形式：
+
+```
+git+ssh://git@github.com/haley1109/MCP.git
+```
+
+公开仓库无需认证；SSH 形式需要该设备已配置 GitHub SSH key。
 
 安装后插件列表出现「MCP 套件」。此时服务器已声明，但缺密钥。
 
